@@ -1,6 +1,8 @@
 # liquidapps-hackathon
 Repository holding the source code for the tipit.io liquidapps hackathon entry.
 
+This demo utilizes Liquidapps VAccounts and VRAM.
+
 To get the demo to function :
 
   1. First you'll need to install the Stripe PHP library, this can be done by 'composer require stripe/stripe-php', or you can download the library and follow the instructions at https://github.com/stripe/stripe-php.
