@@ -5,7 +5,7 @@ To get the demo to function :
 
   1. First you'll need to install the Stripe PHP library, this can be done by 'composer require stripe/stripe-php', or you can download the library and follow the instructions at https://github.com/stripe/stripe-php.
   
-  2.You'll need to have a Stripe developer account if you don't already have one. Once you have a Stripe developer account, you'll need to put your "Secret key" into the settings.php file $settings['stripe-key'].  Your key can be found under Home -> Get Your Test API Keys in the Stripe System.
+  2. You'll need to have a Stripe developer account if you don't already have one. Once you have a Stripe developer account, you'll need to put your "Secret key" into the settings.php file $settings['stripe-key'].  Your key can be found under Home -> Get Your Test API Keys in the Stripe System.
   
   3. You'll need to create a test customer. To create a test customer in Stripe, click on "Customers" on the left menu, then the "+New" button. For name, enter an EOS wallet address, and for email, enter your, or someone else's email. For description, enter "EOS Account".
   
