@@ -112,9 +112,11 @@ if (isset($jsonIn['request'])) {
       break;
 
     case "fetch-content":
+      session_start();
+      $_SESSION['purchased-file'] = "bread-stock-photo.png";
+      $_SESSION['purchased-file-address'] = "https://ipfs.globalupload.io/QmR9jyWyvruKEwXg219L9f1KihnywGS7FQyvCp7kp47wpD";
       $response = Array(
-        "success" => true,
-        "response" => "https://ipfs.globalupload.io/QmR9jyWyvruKEwXg219L9f1KihnywGS7FQyvCp7kp47wpD"
+        "success" => true
       );
       break;
 
@@ -155,6 +157,34 @@ if (isset($jsonIn['request'])) {
 
 
 
+if (isset($_GET['download'])) {
+  session_start();
+  if (isset($_SESSION['purchased-file'])) {
+    //https://stackoverflow.com/questions/2602612/remote-file-size-without-downloading-file
+    function retrieve_remote_file_size($url){
+         $ch = curl_init($url);
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+         curl_setopt($ch, CURLOPT_HEADER, TRUE);
+         curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+         $data = curl_exec($ch);
+         $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+         curl_close($ch);
+         return $size;
+    }
+
+
+    $filename = $_SESSION['purchased-file-address'];
+    $mime = ($mime = retrieve_remote_file_size($filename)) ? $mime['mime'] : $mime;
+    $size = retrieve_remote_file_size($filename);
+    $fp   = fopen($filename, "rb");
+    header("Content-type: " . $mime);
+    header("Content-Length: " . $size);
+    header("Content-Disposition: attachment; filename=".$_SESSION['purchased-file']."");
+    header('Content-Transfer-Encoding: binary');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    fpassthru($fp);
+  }
+}
 
 
 
