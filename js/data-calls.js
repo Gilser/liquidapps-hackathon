@@ -28,7 +28,7 @@ async function getContent(txid) {
       });
       const json = await response.json();
       transactionComplete();
-      document.querySelector('.success-response').innerHTML += '&nbsp;&nbsp;&nbsp;<a target="_blank" href="' + json.response + '">Download</a>';
+      document.querySelector('.success-response').innerHTML += '&nbsp;&nbsp;&nbsp;<a target="_blank" href="./services/services.php?download=true" download>Download</a>';
 
 
   } catch (error) {
